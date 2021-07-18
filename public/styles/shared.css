@@ -1,0 +1,19 @@
+html {
+  min-height: 100vh;
+}
+body {
+  padding-top: 70px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto min-content;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+button[type="submit"] {
+  cursor: pointer;
+}

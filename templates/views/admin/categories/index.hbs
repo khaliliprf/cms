@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-sm-4">
+    <h1> Create category</h1>
+    <form method="POST" >
+      <div class="form-group">
+        <label for="name"></label>
+        <input
+          class="form-control"
+        {{#if category}}
+        value="{{category.name}}"
+        autofocus
+          {{/if}}
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Enter Name"
+        />
+      </div>
+      {{!--  --}}
+      {{#if category}}
+      <button type="submit" formaction="/admin/categories/edit/{{category._id}}?__method=PUT" class="btn btn-primary">done</button>
+      {{else}}
+      <button type="submit" formaction="/admin/categories/create" class="btn btn-primary">done</button>
+      {{/if}}
+      {{!--  --}}
+    </form>
+    {{#if error}}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{error}}</strong>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {{/if}}
+  </div>
+  <div class="col-sm-8">
+
+    <h2> All categories</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Count</th>
+          <th>Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each categories}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{counter}}</td>
+            <td>{{generateDate updatedAt "Do MM YYYY"}}</td>
+            <td>
+              {{#if update}}
+              <a
+                href="/admin/categories/edit/{{id}}?__method=PUT"
+                class="btn btn-info"
+              >EDIT</a>
+              
+              {{/if}}
+            </td>
+            <td>
+              <form
+                method="POST"
+                action="/admin/categories/{{id}}?__method=DELETE"
+              >
+                <button
+                  class="btn btn-danger"
+                  type="submit"
+                >DELETE</button></form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

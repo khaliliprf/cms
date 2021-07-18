@@ -1,0 +1,61 @@
+<h1>All Posts</h1>
+<table class="table table-border">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Status</th>
+      <th>Allow Comment</th>
+      <th>Category</th>
+      <th>Last Update
+        <a class="sort" href="/admin/posts?updatedAt=1"><i
+            class="fa fa-sort-down"
+            style="cursor: pointer;"
+          ></i></a>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each posts}}
+      <tr class="post">
+        <td class="idField">{{id}} </td>
+        {{!-- <td class="imageField">{{this.image}}</td> --}}
+        <td class="imgField">
+          {{#if this.hasImage}}
+            <img
+              style="object-fit: cover;"
+              width="60"
+              height="50"
+              class="img-responsive"
+              src="posts/{{id}}/image"
+              alt="alternate"
+            />
+          {{/if}}
+        </td>
+        <td class="titleField">{{this.title}}</td>
+        <td class="statusField">{{this.status}}</td>
+        <td>{{this.allowComments}}</td>
+        <td>{{this.category}}</td>
+        <td>
+          {{generateDate updatedAt " DD MMMM YYYY"}}
+        </td>
+        <td class="bodyField"><a
+            href="/admin/posts/edit/{{id}}"
+            class="btn btn-info"
+          >Edit</a></td>
+        <td>
+          <form
+            action="/admin/posts/delete/{{id}}?__method=DELETE"
+            method="POST"
+          >
+            <button type="submit" class="btn btn-danger">Delete</button></form>
+        </td>
+
+      </tr>
+
+    {{/each}}
+  </tbody>
+</table>
+<script src="/js/posts/index.js"></script>
