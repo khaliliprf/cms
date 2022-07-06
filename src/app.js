@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv/config");
 
 require("./db/mongoose");
 const methodOverride = require("method-override");
